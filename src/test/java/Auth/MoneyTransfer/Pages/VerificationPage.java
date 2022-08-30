@@ -18,4 +18,11 @@ public class VerificationPage {
         nextPage.shouldBe(visible);
         return new DashBoardPage();
     }
+
+    public DashBoardPage validCodeCucumber (String verificationCode) {
+        codeField.setValue(verificationCode);
+        actionVerify.click();
+        nextPage.shouldBe(visible);
+        return new DashBoardPage();
+    }
 }

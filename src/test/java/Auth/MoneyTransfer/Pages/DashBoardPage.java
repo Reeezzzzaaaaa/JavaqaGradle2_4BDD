@@ -59,4 +59,20 @@ public class DashBoardPage {
         val value = words[5];
         return value;
     }
+
+    public DashBoardPage transferCucumber(String amountCucumber, String numberSecondCard) {
+        cardFirstPage.click();
+        amount.setValue(amountCucumber);
+        cardSender.setValue(numberSecondCard);
+        transfer.click();
+        return new DashBoardPage();
+    }
+
+    public String getCBalanceOfFirstCardCucumber() {
+        val text = balanceCardFirst.text();
+        String[] words = text.split(" ");
+        for (String word : words);
+        val value = words[5];
+        return value;
+    }
 }

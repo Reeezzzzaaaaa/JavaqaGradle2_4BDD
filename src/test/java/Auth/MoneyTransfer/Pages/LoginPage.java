@@ -25,4 +25,14 @@ public class LoginPage {
         nextPage.shouldBe(visible);
         return new VerificationPage();
     }
+
+    public VerificationPage validLoginCucumber (String login, String password) {
+        loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
+        loginField.setValue(login);
+        passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
+        passwordField.setValue(password);
+        actionLogin.click();
+        nextPage.shouldBe(visible);
+        return new VerificationPage();
+    }
 }
