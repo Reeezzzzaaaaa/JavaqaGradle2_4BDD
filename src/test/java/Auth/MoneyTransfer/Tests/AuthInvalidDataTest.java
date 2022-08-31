@@ -1,7 +1,6 @@
 package Auth.MoneyTransfer.Tests;
 
 import Auth.MoneyTransfer.DataHelper.DataHelper;
-import Auth.MoneyTransfer.Pages.DashBoardPage;
 import Auth.MoneyTransfer.Pages.InvalidDataPage;
 import Auth.MoneyTransfer.Pages.LoginPage;
 import Auth.MoneyTransfer.Pages.VerificationPage;
@@ -11,16 +10,15 @@ import org.junit.jupiter.api.Test;
 
 public class AuthInvalidDataTest {
 
-    LoginPage login = new LoginPage();
-    VerificationPage verify = new VerificationPage();
-    DashBoardPage balance = new DashBoardPage();
-    InvalidDataPage error = new InvalidDataPage();
-
     @BeforeEach
     void openPage() {
         Configuration.holdBrowserOpen=true;
         login.openPage();
     }
+
+    LoginPage login = new LoginPage();
+    VerificationPage verify = new VerificationPage();
+    InvalidDataPage error = new InvalidDataPage();
 
     @Test
     void shouldHaveErrorLoginWithRUSLetters() {

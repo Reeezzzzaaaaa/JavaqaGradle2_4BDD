@@ -12,15 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AuthSuccessTest {
 
-    LoginPage login = new LoginPage();
-    VerificationPage verify = new VerificationPage();
-    DashBoardPage balance = new DashBoardPage();
-
     @BeforeEach
     void openPage() {
         Configuration.holdBrowserOpen=true;
         login.openPage();
     }
+
+    LoginPage login = new LoginPage();
+    VerificationPage verify = new VerificationPage();
+    DashBoardPage balance = new DashBoardPage();
 
     @Test
     void successCancelToFirstCardTest() {

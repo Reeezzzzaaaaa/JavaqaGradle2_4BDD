@@ -10,17 +10,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AuthExceptionTest {
 
-    LoginPage login = new LoginPage();
-    VerificationPage verify = new VerificationPage();
-    DashBoardPage balance = new DashBoardPage();
-    FieldEmptyPage exception = new FieldEmptyPage();
-    InvalidDataPage error = new InvalidDataPage();
-
     @BeforeEach
     void openPage() {
         Configuration.holdBrowserOpen=true;
         login.openPage();
     }
+
+    LoginPage login = new LoginPage();
+    VerificationPage verify = new VerificationPage();
+    DashBoardPage balance = new DashBoardPage();
+    FieldEmptyPage exception = new FieldEmptyPage();
+    InvalidDataPage error = new InvalidDataPage();
 
     @Test
     void shouldHaveTransferOrExceptionWithSend1_000_000ToFirstCardTest() {
