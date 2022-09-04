@@ -40,8 +40,4 @@ public class DataHelper {
     public static class AlignmentTransfer {
         private String cardNumberFoAlignment;
     }
-
-    public static AlignmentTransfer getAlignmentTransfer(String cardNumberFoAlignment) {
-        return new AlignmentTransfer(cardNumberFoAlignment);
-    }
 }
