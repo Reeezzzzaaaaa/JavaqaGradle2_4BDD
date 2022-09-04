@@ -1,6 +1,6 @@
-package Auth.MoneyTransfer.Pages;
+package auth.moneyTransfer.pages;
 
-import Auth.MoneyTransfer.DataHelper.DataHelper;
+import auth.moneyTransfer.dataHelper.DataHelper;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
@@ -21,16 +21,6 @@ public class LoginPage {
         loginField.setValue(info.getLogin());
         passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         passwordField.setValue(info.getPassword());
-        actionLogin.click();
-        nextPage.shouldBe(visible);
-        return new VerificationPage();
-    }
-
-    public VerificationPage validLoginCucumber (String login, String password) {
-        loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        loginField.setValue(login);
-        passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        passwordField.setValue(password);
         actionLogin.click();
         nextPage.shouldBe(visible);
         return new VerificationPage();

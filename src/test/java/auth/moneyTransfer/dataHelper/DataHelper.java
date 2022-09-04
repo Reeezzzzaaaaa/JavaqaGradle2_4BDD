@@ -1,4 +1,4 @@
-package Auth.MoneyTransfer.DataHelper;
+package auth.moneyTransfer.dataHelper;
 
 import lombok.Value;
 
@@ -26,13 +26,21 @@ public class DataHelper {
     }
 
     @Value
-    public static class numberCards {
-        private String cardFirst;
-        private String cardSecond;
+    public static class NumberCards {
+        private String cardNumber;
         private String moneyTransfer;
     }
 
-    public static numberCards getNumberCards(String moneyTransfer) {
-        return new numberCards("5559 0000 0000 0001", "5559 0000 0000 0002",moneyTransfer);
+    public static NumberCards getNumberCards(String cardNumber, String moneyTransfer) {
+        return new NumberCards(cardNumber,moneyTransfer);
+    }
+
+    @Value
+    public static class AlignmentTransfer {
+        private String cardNumberFoAlignment;
+    }
+
+    public static AlignmentTransfer getAlignmentTransfer(String cardNumberFoAlignment) {
+        return new AlignmentTransfer(cardNumberFoAlignment);
     }
 }

@@ -1,6 +1,6 @@
-package Auth.MoneyTransfer.Pages;
+package auth.moneyTransfer.pages;
 
-import Auth.MoneyTransfer.DataHelper.DataHelper;
+import auth.moneyTransfer.dataHelper.DataHelper;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -14,13 +14,6 @@ public class VerificationPage {
 
     public DashBoardPage validCode (DataHelper.VerificationCode info) {
         codeField.setValue(info.getCode());
-        actionVerify.click();
-        nextPage.shouldBe(visible);
-        return new DashBoardPage();
-    }
-
-    public DashBoardPage validCodeCucumber (String verificationCode) {
-        codeField.setValue(verificationCode);
         actionVerify.click();
         nextPage.shouldBe(visible);
         return new DashBoardPage();

@@ -1,6 +1,6 @@
-package Auth.MoneyTransfer.Pages;
+package auth.moneyTransfer.pages;
 
-import Auth.MoneyTransfer.DataHelper.DataHelper;
+import auth.moneyTransfer.dataHelper.DataHelper;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 

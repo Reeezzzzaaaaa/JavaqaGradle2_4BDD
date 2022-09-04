@@ -1,6 +1,6 @@
-package Auth.MoneyTransfer.Pages;
+package auth.moneyTransfer.pages;
 
-import Auth.MoneyTransfer.DataHelper.DataHelper;
+import auth.moneyTransfer.dataHelper.DataHelper;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
@@ -14,11 +14,9 @@ public class InvalidDataPage {
     private final SelenideElement actionLogin = $x("//*[@data-test-id='action-login']");
     private final SelenideElement codeField = $x("//*[@data-test-id='code']//input");
     private final SelenideElement actionVerify = $x("//*[@data-test-id='action-verify']");
-    private final SelenideElement fieldVerifyCodeEmpty = $x("//*[@data-test-id='code']//*[contains(text(), 'Поле обязательно')]");
     private final SelenideElement cardPage = $x("//*[@data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']//button");
     private final SelenideElement amount = $x("//*[@data-test-id='amount']//input");
     private final SelenideElement transfer = $x("//*[@data-test-id='action-transfer']//span");
-    private final SelenideElement fieldAmountEmpty = $x("//*[@data-test-id='amount']//*[contains(text(), 'Поле обязательно')]");
     private final SelenideElement cardSender = $x("//*[@data-test-id='from']//input");
     private final SelenideElement notificationError = $x("//*[@data-test-id='error-notification']//*[contains(text(), 'Ошибка')]");
 
