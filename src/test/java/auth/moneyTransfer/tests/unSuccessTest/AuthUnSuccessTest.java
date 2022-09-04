@@ -37,7 +37,7 @@ public class AuthUnSuccessTest {
         login.validLogin(DataHelper.getAuthInfo());
         verify.validCode(DataHelper.getVerificationCode());
         balance.alignmentTransfer();
-        String moneyTransfer = balance.getStartBalanceOfFirstCard()+1;
+        String moneyTransfer = String.valueOf(Integer.parseInt(balance.getStartBalanceOfFirstCard())+1);
         var startBalanceOfFirstCard = balance.getStartBalanceOfFirstCard();
         var startBalanceOfSecondCard = balance.getStartBalanceOfSecondCard();
         balance.choiceFirstCard();
