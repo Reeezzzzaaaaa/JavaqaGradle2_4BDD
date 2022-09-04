@@ -11,11 +11,12 @@ public class MoneyTransferPage {
     private final SelenideElement amount = $x("//*[@data-test-id='amount']//input");
     private final SelenideElement cardSender = $x("//*[@data-test-id='from']//input");
     private final SelenideElement transfer = $x("//*[@data-test-id='action-transfer']//span");
-    private final SelenideElement cancel= $x("//*[@data-test-id='action-cancel']//span");
+    private final SelenideElement cancel = $x("//*[@data-test-id='action-cancel']//span");
 
     public MoneyTransferPage() {
     }
-    public DashBoardPage validTransfer (DataHelper.NumberCards info) {
+
+    public DashBoardPage validTransfer(DataHelper.NumberCards info) {
         amount.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         amount.setValue(info.getMoneyTransfer());
         cardSender.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
@@ -29,17 +30,17 @@ public class MoneyTransferPage {
 //        return new DashBoardPage();
 //    }
 
-    public DashBoardPage transfer () {
+    public DashBoardPage transfer() {
         transfer.click();
         return new DashBoardPage();
     }
 
-    public DashBoardPage cancel () {
+    public DashBoardPage cancel() {
         cancel.click();
         return new DashBoardPage();
     }
 
-    public DashBoardPage alignmentTransfer (String cardNumberFoAlignment, String alignmentTransfer) {
+    public DashBoardPage alignmentTransfer(String cardNumberFoAlignment, String alignmentTransfer) {
         amount.setValue(String.valueOf(alignmentTransfer));
         cardSender.setValue(cardNumberFoAlignment);
         return new DashBoardPage();

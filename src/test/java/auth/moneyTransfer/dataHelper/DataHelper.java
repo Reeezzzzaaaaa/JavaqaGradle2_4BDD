@@ -4,7 +4,8 @@ import lombok.Value;
 
 public class DataHelper {
 
-    DataHelper() {}
+    DataHelper() {
+    }
 
     @Value
     public static class AuthInfo {
@@ -32,7 +33,7 @@ public class DataHelper {
     }
 
     public static NumberCards getNumberCards(String cardNumber, String moneyTransfer) {
-        return new NumberCards(cardNumber,moneyTransfer);
+        return new NumberCards(cardNumber, moneyTransfer);
     }
 
     @Value

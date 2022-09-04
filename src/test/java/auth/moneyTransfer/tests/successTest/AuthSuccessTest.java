@@ -20,7 +20,7 @@ public class AuthSuccessTest {
 
     @BeforeEach
     void openPage() {
-        Configuration.holdBrowserOpen=true;
+        Configuration.holdBrowserOpen = true;
         login.openPage();
     }
 
@@ -41,12 +41,12 @@ public class AuthSuccessTest {
         var startBalanceOfFirstCard = balance.getStartBalanceOfFirstCard();
         var startBalanceOfSecondCard = balance.getStartBalanceOfSecondCard();
         balance.choiceFirstCard();
-        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0002",moneyTransfer));
+        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0002", moneyTransfer));
         transfer.transfer();
         var currencyBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var currencyBalanceOfSecondCard = balance.getBalanceOfSecondCard();
-        assertEquals(Integer.parseInt(currencyBalanceOfFirstCard), Integer.parseInt(startBalanceOfFirstCard) + Integer.parseInt(moneyTransfer));
-        assertEquals(Integer.parseInt(currencyBalanceOfSecondCard), Integer.parseInt(startBalanceOfSecondCard) - Integer.parseInt(moneyTransfer));
+        assertEquals(Integer.parseInt(currencyBalanceOfFirstCard), Integer.parseInt(startBalanceOfFirstCard)+Integer.parseInt(moneyTransfer));
+        assertEquals(Integer.parseInt(currencyBalanceOfSecondCard), Integer.parseInt(startBalanceOfSecondCard)-Integer.parseInt(moneyTransfer));
     }
 
     @Test
@@ -59,12 +59,12 @@ public class AuthSuccessTest {
         var startBalanceOfFirstCard = balance.getStartBalanceOfFirstCard();
         var startBalanceOfSecondCard = balance.getStartBalanceOfSecondCard();
         balance.choiceSecondCard();
-        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0001",moneyTransfer));
+        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0001", moneyTransfer));
         transfer.transfer();
         var currencyBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var currencyBalanceOfSecondCard = balance.getBalanceOfSecondCard();
-        assertEquals(Integer.parseInt(currencyBalanceOfFirstCard), Integer.parseInt(startBalanceOfFirstCard) - Integer.parseInt(moneyTransfer));
-        assertEquals(Integer.parseInt(currencyBalanceOfSecondCard), Integer.parseInt(startBalanceOfSecondCard) + Integer.parseInt(moneyTransfer));
+        assertEquals(Integer.parseInt(currencyBalanceOfFirstCard), Integer.parseInt(startBalanceOfFirstCard)-Integer.parseInt(moneyTransfer));
+        assertEquals(Integer.parseInt(currencyBalanceOfSecondCard), Integer.parseInt(startBalanceOfSecondCard)+Integer.parseInt(moneyTransfer));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class AuthSuccessTest {
         var startBalanceOfFirstCard = balance.getStartBalanceOfFirstCard();
         var startBalanceOfSecondCard = balance.getStartBalanceOfSecondCard();
         balance.choiceFirstCard();
-        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0002",moneyTransfer));
+        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0002", moneyTransfer));
         transfer.cancel();
         var currencyBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var currencyBalanceOfSecondCard = balance.getBalanceOfSecondCard();

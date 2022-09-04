@@ -17,12 +17,12 @@ public class DashBoardPage {
     public DashBoardPage() {
     }
 
-    public DashBoardPage choiceFirstCard () {
+    public DashBoardPage choiceFirstCard() {
         cardFirstPage.click();
         return new DashBoardPage();
     }
 
-    public DashBoardPage choiceSecondCard () {
+    public DashBoardPage choiceSecondCard() {
         cardSecondPage.click();
         return new DashBoardPage();
     }
@@ -30,9 +30,9 @@ public class DashBoardPage {
     public String getBalanceOfFirstCard() {
         val text = balanceCardFirst.text();
         String[] words = text.split(" ");
-        for (String word : words);
+        for (String word : words) ;
         val value = words[5];
-        if (Integer.parseInt(value) < 0) {
+        if ( Integer.parseInt(value) < 0 ) {
             return null;
         }
         return value;
@@ -41,9 +41,9 @@ public class DashBoardPage {
     public String getBalanceOfSecondCard() {
         val text = balanceCardSecond.text();
         String[] words = text.split(" ");
-        for (String word : words);
+        for (String word : words) ;
         val value = words[5];
-        if (Integer.parseInt(value) < 0) {
+        if ( Integer.parseInt(value) < 0 ) {
             return null;
         }
         return value;
@@ -52,7 +52,7 @@ public class DashBoardPage {
     public String getStartBalanceOfFirstCard() {
         val text = balanceCardFirst.text();
         String[] words = text.split(" ");
-        for (String word : words);
+        for (String word : words) ;
         val value = words[5];
         return value;
     }
@@ -60,14 +60,14 @@ public class DashBoardPage {
     public String getStartBalanceOfSecondCard() {
         val text = balanceCardSecond.text();
         String[] words = text.split(" ");
-        for (String word : words);
+        for (String word : words) ;
         val value = words[5];
         return value;
     }
 
     public DashBoardPage alignmentTransfer() {
-        int alignmentTransfer = 10000 - Integer.parseInt(getStartBalanceOfFirstCard());
-        if (alignmentTransfer < 0) {
+        int alignmentTransfer = 10000-Integer.parseInt(getStartBalanceOfFirstCard());
+        if ( alignmentTransfer < 0 ) {
             choiceSecondCard();
             transfer.alignmentTransfer("5559 0000 0000 0001", String.valueOf(alignmentTransfer));
             transfer.transfer();

@@ -24,7 +24,7 @@ public class InvalidDataPage {
     public InvalidDataPage() {
     }
 
-    public InvalidDataPage invalidLoginWithRUSLetter (DataHelper.AuthInfo info) {
+    public InvalidDataPage invalidLoginWithRUSLetter(DataHelper.AuthInfo info) {
         loginField.setValue(info.getLogin());
         loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         loginField.setValue("Вася");
@@ -34,7 +34,7 @@ public class InvalidDataPage {
         return new InvalidDataPage();
     }
 
-    public InvalidDataPage invalidLoginWithOtherSymbol (DataHelper.AuthInfo info) {
+    public InvalidDataPage invalidLoginWithOtherSymbol(DataHelper.AuthInfo info) {
         loginField.setValue(info.getLogin());
         loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         loginField.setValue("vasya&$*(!$%");
@@ -44,7 +44,7 @@ public class InvalidDataPage {
         return new InvalidDataPage();
     }
 
-    public InvalidDataPage invalidPassword (DataHelper.AuthInfo info) {
+    public InvalidDataPage invalidPassword(DataHelper.AuthInfo info) {
         loginField.setValue(info.getLogin());
         passwordField.setValue(info.getPassword());
         passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
@@ -55,7 +55,7 @@ public class InvalidDataPage {
     }
 
 
-    public InvalidDataPage invalidCode (DataHelper.VerificationCode info) {
+    public InvalidDataPage invalidCode(DataHelper.VerificationCode info) {
         codeField.setValue(info.getCode());
         codeField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         codeField.setValue("11111");
