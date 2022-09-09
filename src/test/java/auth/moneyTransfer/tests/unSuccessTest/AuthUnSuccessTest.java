@@ -1,5 +1,6 @@
 package auth.moneyTransfer.tests.unSuccessTest;
 
+import auth.moneyTransfer.dataHelper.AlignmentClass;
 import auth.moneyTransfer.dataHelper.DataHelper;
 import auth.moneyTransfer.pages.*;
 import com.codeborne.selenide.Configuration;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AuthUnSuccessTest {
@@ -21,63 +23,83 @@ public class AuthUnSuccessTest {
     @BeforeEach
     void openPage() {
         Configuration.holdBrowserOpen = true;
-        login.openPage();
+        open("http://localhost:9999/");
     }
-
-    LoginPage login = new LoginPage();
-    VerificationPage verify = new VerificationPage();
-    DashBoardPage balance = new DashBoardPage();
-    MoneyTransferPage transfer = new MoneyTransferPage();
-    FieldEmptyPage exception = new FieldEmptyPage();
-    InvalidDataPage error = new InvalidDataPage();
 
     @Test
     void shouldHaveWrongTransferOrExceptionWithSendAboveLimitToFirstCardTest() {
 
+        LoginPage login = new LoginPage();
+        VerificationPage verify = new VerificationPage();
+        DashBoardPage balance = new DashBoardPage();
+        MoneyTransferPage transfer = new MoneyTransferPage();
+        AlignmentClass alignment = new AlignmentClass();
+
         login.validLogin(DataHelper.getAuthInfo());
         verify.validCode(DataHelper.getVerificationCode());
-        balance.alignmentTransfer();
-        String moneyTransfer = String.valueOf(Integer.parseInt(balance.getStartBalanceOfFirstCard())+1);
-        var startBalanceOfFirstCard = balance.getStartBalanceOfFirstCard();
-        var startBalanceOfSecondCard = balance.getStartBalanceOfSecondCard();
+        alignment.alignmentTransfer();
+        var moneyTransfer = balance.getBalanceOfSecondCard()+1;
+        var startBalanceOfFirstCard = balance.getBalanceOfFirstCard();
+        var startBalanceOfSecondCard = balance.getBalanceOfSecondCard();
         balance.choiceFirstCard();
-        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0002", moneyTransfer));
+        transfer.validTransfer(DataHelper.getInfoOfSecondCard(), DataHelper.getTransfer(moneyTransfer));
         transfer.transfer();
         var currencyBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var currencyBalanceOfSecondCard = balance.getBalanceOfSecondCard();
-        assertEquals(Integer.parseInt(currencyBalanceOfFirstCard), Integer.parseInt(startBalanceOfFirstCard)+Integer.parseInt(moneyTransfer));
-        assertEquals(Integer.parseInt(currencyBalanceOfSecondCard), Integer.parseInt(startBalanceOfSecondCard)-Integer.parseInt(moneyTransfer));
+        assertEquals(startBalanceOfFirstCard, currencyBalanceOfFirstCard);
+        assertEquals(startBalanceOfSecondCard, currencyBalanceOfSecondCard);
     }
 
     @Test
     void shouldHaveWrongTransferOrExceptionWithSendAboveLimitToSecondCardTest() {
 
+        LoginPage login = new LoginPage();
+        VerificationPage verify = new VerificationPage();
+        DashBoardPage balance = new DashBoardPage();
+        MoneyTransferPage transfer = new MoneyTransferPage();
+        AlignmentClass alignment = new AlignmentClass();
+
         login.validLogin(DataHelper.getAuthInfo());
         verify.validCode(DataHelper.getVerificationCode());
-        balance.alignmentTransfer();
-        String moneyTransfer = String.valueOf((Integer.parseInt(balance.getBalanceOfFirstCard())+1));
-        var startBalanceOfFirstCard = balance.getStartBalanceOfFirstCard();
-        var startBalanceOfSecondCard = balance.getStartBalanceOfSecondCard();
+        alignment.alignmentTransfer();
+        var moneyTransfer = balance.getBalanceOfFirstCard()+1;
+        var startBalanceOfFirstCard = balance.getBalanceOfFirstCard();
+        var startBalanceOfSecondCard = balance.getBalanceOfSecondCard();
         balance.choiceSecondCard();
-        transfer.validTransfer(DataHelper.getNumberCards("5559 0000 0000 0001", moneyTransfer));
+        transfer.validTransfer(DataHelper.getInfoOfFirstCard(), DataHelper.getTransfer(moneyTransfer));
         transfer.transfer();
         var currencyBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var currencyBalanceOfSecondCard = balance.getBalanceOfSecondCard();
-        assertEquals(Integer.parseInt(currencyBalanceOfFirstCard), Integer.parseInt(startBalanceOfFirstCard)-Integer.parseInt(moneyTransfer));
-        assertEquals(Integer.parseInt(currencyBalanceOfSecondCard), Integer.parseInt(startBalanceOfSecondCard)+Integer.parseInt(moneyTransfer));
+        assertEquals(startBalanceOfFirstCard, currencyBalanceOfFirstCard);
+        assertEquals(startBalanceOfSecondCard, currencyBalanceOfSecondCard);
     }
 
     @Test
     void shouldNotTransferWithAmountEmptyTest() {
+
+        LoginPage login = new LoginPage();
+        VerificationPage verify = new VerificationPage();
+        DashBoardPage balance = new DashBoardPage();
+        MoneyTransferPage transfer = new MoneyTransferPage();
+
         login.validLogin(DataHelper.getAuthInfo());
         verify.validCode(DataHelper.getVerificationCode());
-        exception.amountEmpty();
+        balance.choiceFirstCard();
+        transfer.amountEmpty();
     }
 
     @Test
     void shouldHaveErrorCardSender0001() {
+
+        LoginPage login = new LoginPage();
+        VerificationPage verify = new VerificationPage();
+        DashBoardPage balance = new DashBoardPage();
+        MoneyTransferPage transfer = new MoneyTransferPage();
+
+        var moneyTransfer = 500;
         login.validLogin(DataHelper.getAuthInfo());
         verify.validCode(DataHelper.getVerificationCode());
-        error.InvalidCardSender0001();
+        balance.choiceFirstCard();
+        transfer.InvalidCardSender("5559 0000 0000 0001", DataHelper.getTransfer(moneyTransfer));
     }
 }
