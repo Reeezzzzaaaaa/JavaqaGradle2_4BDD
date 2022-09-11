@@ -13,11 +13,11 @@ public class AlignmentClass {
 
         if ( alignmentTransfer < 0 ) {
             currentBalance.choiceSecondCard();
-            money.validTransfer(DataHelper.getInfoOfFirstCard(), DataHelper.getTransfer(alignmentTransfer));
+            money.validTransfer(DataHelper.getInfoOfFirstCard(), DataHelper.getTransfer(String.valueOf(alignmentTransfer)));
             money.transfer();
         } else {
             currentBalance.choiceFirstCard();
-            money.validTransfer(DataHelper.getInfoOfSecondCard(), DataHelper.getTransfer(alignmentTransfer));
+            money.validTransfer(DataHelper.getInfoOfSecondCard(), DataHelper.getTransfer(String.valueOf(alignmentTransfer)));
             money.transfer();
         }
         return new AlignmentClass();

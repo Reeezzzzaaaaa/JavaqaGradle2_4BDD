@@ -23,44 +23,30 @@ public class LoginPage {
         passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         passwordField.setValue(info.getPassword());
         actionLogin.click();
+        return new VerificationPage();
+    }
+
+    public VerificationPage nextPage() {
         nextPage.shouldBe(visible);
         return new VerificationPage();
     }
 
-    public LoginPage loginEmpty(DataHelper.AuthInfo info) {
-        loginField.setValue(info.getLogin());
-        loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        passwordField.setValue(info.getPassword());
-        actionLogin.click();
+    public LoginPage loginEmpty() {
         fieldLoginEmpty.shouldHave(visible);
         return new LoginPage();
     }
 
-    public LoginPage passwordEmpty(DataHelper.AuthInfo info) {
-        loginField.setValue(info.getLogin());
-        passwordField.setValue(info.getPassword());
-        passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        actionLogin.click();
+    public LoginPage passwordEmpty() {
         fieldPasswordEmpty.shouldHave(visible);
         return new LoginPage();
     }
 
-    public LoginPage invalidLogin(DataHelper.AuthInfo info, String login) {
-        loginField.setValue(info.getLogin());
-        loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        loginField.setValue(login);
-        passwordField.setValue(info.getPassword());
-        actionLogin.click();
+    public LoginPage invalidLogin() {
         notificationError.shouldHave(visible);
         return new LoginPage();
     }
 
-    public LoginPage invalidPassword(DataHelper.AuthInfo info) {
-        loginField.setValue(info.getLogin());
-        passwordField.setValue(info.getPassword());
-        passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        passwordField.setValue("123qwerty");
-        actionLogin.click();
+    public LoginPage invalidPassword() {
         notificationError.shouldHave(visible);
         return new LoginPage();
     }

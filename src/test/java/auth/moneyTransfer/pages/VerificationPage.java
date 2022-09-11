@@ -17,14 +17,12 @@ public class VerificationPage {
     public DashBoardPage validCode(DataHelper.VerificationCode info) {
         codeField.setValue(info.getCode());
         actionVerify.click();
-        nextPage.shouldBe(visible);
         return new DashBoardPage();
     }
 
-    public VerificationPage invalidCode(String code) {
-        codeField.setValue(code);
-        actionVerify.click();
-        return new VerificationPage();
+    public DashBoardPage nextPage() {
+        nextPage.shouldBe(visible);
+        return new DashBoardPage();
     }
 
     public VerificationPage fieldVerifyCodeEmpty() {

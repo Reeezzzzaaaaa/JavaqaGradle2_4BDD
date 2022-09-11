@@ -30,19 +30,19 @@ public class AuthUnSuccessTest {
     void shouldHaveWrongTransferOrExceptionWithSendAboveLimitToFirstCardTest() {
 
         LoginPage login = new LoginPage();
-        VerificationPage verify = new VerificationPage();
-        DashBoardPage balance = new DashBoardPage();
-        MoneyTransferPage transfer = new MoneyTransferPage();
-        AlignmentClass alignment = new AlignmentClass();
-
         login.validLogin(DataHelper.getAuthInfo());
+        login.nextPage();
+        VerificationPage verify = new VerificationPage();
         verify.validCode(DataHelper.getVerificationCode());
+        verify.nextPage();
+        DashBoardPage balance = new DashBoardPage();
+        AlignmentClass alignment = new AlignmentClass();
         alignment.alignmentTransfer();
-        var moneyTransfer = balance.getBalanceOfSecondCard()+1;
         var startBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var startBalanceOfSecondCard = balance.getBalanceOfSecondCard();
         balance.choiceFirstCard();
-        transfer.validTransfer(DataHelper.getInfoOfSecondCard(), DataHelper.getTransfer(moneyTransfer));
+        MoneyTransferPage transfer = new MoneyTransferPage();
+        transfer.validTransfer(DataHelper.getInfoOfSecondCard(), DataHelper.getCriticalTransferFromSecondCard());
         transfer.transfer();
         var currencyBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var currencyBalanceOfSecondCard = balance.getBalanceOfSecondCard();
@@ -54,19 +54,19 @@ public class AuthUnSuccessTest {
     void shouldHaveWrongTransferOrExceptionWithSendAboveLimitToSecondCardTest() {
 
         LoginPage login = new LoginPage();
-        VerificationPage verify = new VerificationPage();
-        DashBoardPage balance = new DashBoardPage();
-        MoneyTransferPage transfer = new MoneyTransferPage();
-        AlignmentClass alignment = new AlignmentClass();
-
         login.validLogin(DataHelper.getAuthInfo());
+        login.nextPage();
+        VerificationPage verify = new VerificationPage();
         verify.validCode(DataHelper.getVerificationCode());
+        verify.nextPage();
+        DashBoardPage balance = new DashBoardPage();
+        AlignmentClass alignment = new AlignmentClass();
         alignment.alignmentTransfer();
-        var moneyTransfer = balance.getBalanceOfFirstCard()+1;
         var startBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var startBalanceOfSecondCard = balance.getBalanceOfSecondCard();
         balance.choiceSecondCard();
-        transfer.validTransfer(DataHelper.getInfoOfFirstCard(), DataHelper.getTransfer(moneyTransfer));
+        MoneyTransferPage transfer = new MoneyTransferPage();
+        transfer.validTransfer(DataHelper.getInfoOfFirstCard(), DataHelper.getCriticalTransferFromFirstCard());
         transfer.transfer();
         var currencyBalanceOfFirstCard = balance.getBalanceOfFirstCard();
         var currencyBalanceOfSecondCard = balance.getBalanceOfSecondCard();
@@ -78,13 +78,15 @@ public class AuthUnSuccessTest {
     void shouldNotTransferWithAmountEmptyTest() {
 
         LoginPage login = new LoginPage();
-        VerificationPage verify = new VerificationPage();
-        DashBoardPage balance = new DashBoardPage();
-        MoneyTransferPage transfer = new MoneyTransferPage();
-
         login.validLogin(DataHelper.getAuthInfo());
+        login.nextPage();
+        VerificationPage verify = new VerificationPage();
         verify.validCode(DataHelper.getVerificationCode());
+        verify.nextPage();
+        DashBoardPage balance = new DashBoardPage();
         balance.choiceFirstCard();
+        MoneyTransferPage transfer = new MoneyTransferPage();
+        transfer.validTransfer(DataHelper.getInfoOfFirstCard(), DataHelper.getTransferEmpty());
         transfer.amountEmpty();
     }
 
@@ -92,14 +94,15 @@ public class AuthUnSuccessTest {
     void shouldHaveErrorCardSender0001() {
 
         LoginPage login = new LoginPage();
-        VerificationPage verify = new VerificationPage();
-        DashBoardPage balance = new DashBoardPage();
-        MoneyTransferPage transfer = new MoneyTransferPage();
-
-        var moneyTransfer = 500;
         login.validLogin(DataHelper.getAuthInfo());
+        login.nextPage();
+        VerificationPage verify = new VerificationPage();
         verify.validCode(DataHelper.getVerificationCode());
+        verify.nextPage();
+        DashBoardPage balance = new DashBoardPage();
         balance.choiceFirstCard();
-        transfer.InvalidCardSender("5559 0000 0000 0001", DataHelper.getTransfer(moneyTransfer));
+        MoneyTransferPage transfer = new MoneyTransferPage();
+        transfer.validTransfer(DataHelper.getInfoOfFirstCard(), DataHelper.getTransferAmount());
+        transfer.cardSenderError();
     }
 }

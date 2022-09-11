@@ -38,24 +38,12 @@ public class MoneyTransferPage {
     }
 
     public MoneyTransferPage amountEmpty() {
-        amount.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         transfer.click();
         fieldAmountEmpty.shouldBe(visible);
         return new MoneyTransferPage();
     }
 
-    public MoneyTransferPage cardSenderEmpty() {
-        cardSender.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        transfer.click();
-        notificationError.shouldBe(visible);
-        return new MoneyTransferPage();
-    }
-
-    public MoneyTransferPage InvalidCardSender(String cardNumber, DataHelper.TransferInfo infoTransfer) {
-        amount.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        amount.setValue(String.valueOf(infoTransfer.getTransfer()));
-        cardSender.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        cardSender.setValue(cardNumber);
+    public MoneyTransferPage cardSenderError() {
         transfer.click();
         notificationError.shouldBe(visible);
         return new MoneyTransferPage();
